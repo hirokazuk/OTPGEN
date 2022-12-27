@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>トークンジェネレータ</title>
+      <style>
+      </style>
+      <script type="text/javascript" src="secret.js" ></script>
+      <script type="text/javascript" src="js/totp.js" ></script>
+      <script type="text/javascript" src="js/lib/jsrsasign-all-min.js" ></script>
+      <script>
+         function process() {
+           if(seed){
+             document.getElementById("now").innerHTML = `現在時刻：${new Date().toLocaleString()}`;
+             document.getElementById("realtime").innerHTML = `トークン：${gauth(seed)}`;
+           }else{
+             document.getElementById("seedExists").innerHTML = "シードキーが設定されていません(secret.jsにシードキーを設定ください)"
+           }
+         }
+         setInterval('process()',1000);
+      </script>
+   </head>
+   <body>
+      <div>
+         <p id="seedExists" style="color:red"></p>
+         <p id="now"></p>
+         <p id="realtime"></p>
+      </div>
+   </body>
+</html>
